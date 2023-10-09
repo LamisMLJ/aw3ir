@@ -1,0 +1,74 @@
+
+h1 {
+    text-align: center; /* pour centrer le titre */
+
+}
+
+
+body {
+    background-color: #e9ebee;
+    font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+    font-size: 16px;
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  h1, h2, h3, h4 {
+    color: #ff69b4; /* Pink color */
+  }
+  
+  /* Remove borders from the first row of tables */
+  table tr:first-child {
+    border-top: none;
+  }
+  
+  /* Remove borders from the last row of tables */
+  table tr:last-child {
+    border-bottom: none;
+  }
+/* insérer une image*/
+
+  .stage-row {
+    position: relative;
+  }
+  
+  .stage-row {
+    position: relative;
+  }
+  
+  /* Style for the image */
+  .stage-image {
+    max-width: 50px; /* Adjust the width as needed */
+    height: auto;
+    margin-left: 10px; /* Adjust the spacing between the text and image */
+  }
+  .language-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Style pour les étoiles */
+  .star-rating {
+    color: #FFD700; /* Couleur de l'étoile jaune */
+    margin-left: 10px; /* Ajustez l'espacement entre le texte et les étoiles selon vos préférences */
+  }
+  
+  /* Style pour le texte du niveau de langue */
+  .language-level {
+    margin-left: 5px; /* Ajustez l'espacement entre les étoiles et le texte selon vos préférences */
+  }
