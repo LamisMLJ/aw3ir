@@ -1,33 +1,149 @@
 <!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>TP4</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="fr">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+<head>
+    <meta charset="utf-8">
+    <title>TP4</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory --> <!-- CSS boostrap -->
+    <link rel="stylesheet" href="CSS/bootstrap.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="JS/bootstrap.bundle.js"></script>
+    <script src="JS/form-validation.js"></script>
+    <script src="JS/gps.js"></script>
+    <script src="JS/store.js"></script>
 
-        <style>
-          body{
-              background-color: #e9ebee;              
-              font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
-              font-size: 16px;
-              margin: 0 auto;
-              max-width: 800px;              
-          }
-        </style>
-        
-        <!-- Code à dé-commenter si besoin de fichier CSS ou JS -->
-        <!--<link rel="stylesheet" href="style.css">-->
-        <!--<script src="main.js"></script>-->
-    </head>
-    <body>        
-        <h1>TP4</h1>
-        <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
-        <img src="../galilee.png" alt="Logo Galilee"/>
-    </body>
+</head>
+
+<body>
+    <!-- librairie Javascript de boostrap pour pouvoir utiliser les composants interactifs (modal https://getbootstrap.com/docs/5.1/components/modal/ , collapse...) -->
+    <div class="container">
+        <h1>TP 4</h1>
+
+        <!-- Content here -->
+        <form class="row g-3 " id="form" action="../form-validation.js" novalidate>
+            <div class="row mb-3">
+                <label for="nom" class="col-sm-2 form-label">Nom</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="name" placeholder="NOM" required
+                        onkeyup="calcNbChar(id)" />
+                </div>
+                <div class="col-sm-1 d-flex align-items-center">
+                    <span id="span-name"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="firstname" class="col-sm-2 form-label">Prénom</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prénom"
+                        required onkeyup="calcNbChar(id)">
+                </div>
+                <div class="col-sm-1 d-flex align-items-center">
+                    <span id="span-firstname"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="date_naissance" class="col-sm-2 form-label">Date de naissance</label>
+                <div class="col-sm-9">
+                    <input type="date" class="form-control" id="date_naissance" onkeyup="calcNbChar(id)">
+                </div>
+                <div class="col-sm-1 d-flex align-items-center">
+                    <span id="span-date_naissance"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="address" class="col-sm-2 form-label">Adresse</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="address" onkeyup="calcNbChar(id)"
+                        onchange="calcNbChar(id)">
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" id="buttonGPS" class="btnGPS btn-outline-danger"
+                        onclick="return false">GPS</button>
+                </div>
+                <div class="col-sm-1 d-flex align-items-center">
+                    <span id="span-address"></span>
+                </div>
+            </div>
+            <div id="map" class="col-sm-12"></div>
+            <div class="row mb-3">
+                <label for="mail" class="col-sm-2 form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" id="mail" placeholder="exemple@mail.com"
+                        onkeyup="calcNbChar(id)" onchange="calcNbChar(id)">
+                </div>
+                <div class="col-sm-1">
+                    <span id="span-mail"></span>
+                </div>
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-outline-danger" value="Ajouter"><br>
+                <br>
+            </div>
+
+        </form>
+    </div> <!--les modaux id=  myModal pour les erreurs et myValidModal pour le form valide-->
+    <div id="message" style="display: none;">Contact ajouté avec succès</div>
+
+
+
+    <div class="row">
+        <div class="row liste">
+            <div class="col-auto">
+                <h4 id="List" class="ListContact"></h4>
+            </div>
+            <div class="col-auto">
+                <input type="submit" id="delete" style="margin-bottom: 50px;" class="btn btn-outline-danger"
+                    value="Reset"><br>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date</th>
+                    <th>Adresse</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModal">Erreur dans le formulaire.</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body-err"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myValidModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!--j'ai changé le nom des title et body pour distinguer entre les # modaux-->
+                        <h5 class="modal-title-valid" id="myValidModal">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body-valid"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- <a class="btn btn-outline-success" href="#" role="button">Link</a>-->
+</body>
+
 </html>

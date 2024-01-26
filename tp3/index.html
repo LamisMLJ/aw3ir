@@ -1,33 +1,98 @@
 <!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>TP3</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="fr">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+<head>
+    <meta charset="utf-8">
+    <title>TP3</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory --> <!-- CSS boostrap -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/form-validation.js"></script>
+</head>
 
-        <style>
-          body{
-              background-color: #e9ebee;              
-              font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
-              font-size: 16px;
-              margin: 0 auto;
-              max-width: 800px;              
-          }
-        </style>
-        
-        <!-- Code à dé-commenter si besoin de fichier CSS ou JS -->
-        <!--<link rel="stylesheet" href="style.css">-->
-        <!--<script src="main.js"></script>-->
-    </head>
-    <body>        
-        <h1>tp3</h1>
-        <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
-        <img src="../galilee.png" alt="Logo Galilee"/>
-    </body>
+<body>
+    <!-- librairie Javascript de boostrap pour pouvoir utiliser les composants interactifs (modal https://getbootstrap.com/docs/5.1/components/modal/ , collapse...) -->
+    <div class="container">
+        <h1>tp3 avec BOOTSTRAP</h1>
+        <img class="img-fluid mx-auto" src="../galilee.png" alt=" Logo Galilee" />
+        <!-- Content here -->
+        <form class="row g-3 " id="form" action="../form-validation.js" novalidate>
+            <div class="col-md-6"> <label class="form-label" for="name">Nom</label>
+                <input class="form-control" type="text" id="name" name="name" placeholder="NOM" required />
+            </div>
+            <div class="col-md-6">
+                <label for="firstname" class="form-label">Prénom</label>
+                <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Prénom" required>
+            </div>
+            <div class="col-md-5">
+                <label for="date_naissance" class="form-label">Date de naissance</label>
+                <input type="date" class="form-control" id="date_naissance" name="date_naissance">
+            </div>
+            <div class="col-12">
+                <label for="address" class="form-label">Adresse</label>
+                <input type="text" class="form-control" id="address" name="address">
+            </div>
+            <div class="col-md-6">
+                <label for="region" class="form-label">Région</label>
+                <input type="text" class="form-control" id="region" name="region">
+            </div>
+            <div class="col-md-4">
+                <label for="ville" class="form-label">Ville</label>
+                <select id="ville" class="form-select">
+                    <option selected>Choose...</option>
+                    <option>Paris</option>
+                    <option>Vincenne</option>
+                    <option>Saint-Denis</option>
+                    <option>Créteil</option>
+                    <option>Noisiel</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="code-postal" class="form-label">code postal</label>
+                <input type="text" class="form-control" id="code-postal" placeholder="75000">
+            </div>
+            <div>
+                <label for="mail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="mail" placeholder="exemple@mail.com">
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-outline-success" value="Valider"><br>
+                <br>
+            </div>
+        </form>
+    </div> <!--les modaux id=  myModal pour les erreurs et myValidModal pour le form valide-->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModal">Erreur dans le formulaire.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body-err"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myValidModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--j'ai changé le nom des title et body pour distinguer entre les # modaux-->
+                    <h5 class="modal-title-valid" id="myValidModal">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body-valid"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div> <!-- <a class="btn btn-outline-success" href="#" role="button">Link</a>-->
+</body>
+
 </html>

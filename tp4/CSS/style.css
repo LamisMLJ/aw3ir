@@ -1,0 +1,89 @@
+body {
+    background-color: #212121;
+    color: #fff;
+}
+
+.container {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+h1 {
+    color: #E91E63;
+    /* Pink color */
+}
+
+.form-control,
+.btn,
+.btn-outline-danger,
+.table,
+.modal-content {
+    background-color: #424242;
+    color: #fff;
+}
+
+.btn-outline-danger {
+    border-color: #E91E63;
+    /* Pink color */
+    color: #E91E63;
+    /* Pink color */
+}
+
+.btn-outline-danger:hover {
+    background-color: #E91E63;
+    /* Pink color */
+    color: #fff;
+}
+
+.table th,
+.table td {
+    border-color: #616161;
+}
+
+.modal-content {
+    border: 1px solid #616161;
+}
+
+.modal-header,
+.modal-footer {
+    background-color: #333;
+    border-color: #616161;
+}
+
+.modal-title {
+    color: #E91E63;
+    /* Pink color */
+}
+
+.modal-body-err,
+.modal-body-valid {
+    color: #fff;
+}
+
+/* Additional styling for specific elements */
+#message {
+    background-color: #E91E63;
+    /* Pink color */
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.liste {
+    background-color: #333;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.ListContact {
+    color: #E91E63;
+    /* Pink color */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #424242;
+}
